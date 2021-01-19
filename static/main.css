@@ -1,0 +1,106 @@
+body {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 2rem;
+    /*font-family: monospace;*/
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* shrink the text size of source code for small screens
+   to prevent it from running off the screen */
+@media only screen and (max-width: 600px) {
+    h1 { font-size: 8vw; }
+    div.sourceCode { font-size: 8px; }
+}
+
+h1 + p {
+    line-height: 0px;
+    font-weight: bold;
+    font-style: italic;
+    color: hsl(0, 0%, 50%);
+}
+
+span.timestamp {
+}
+
+figure {
+    text-align: center;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+ul.no_bullet {
+    list-style: none;
+    /*line-height: 200%;*/
+}
+
+ul.no_bullet li {
+    font-family: monospace;
+    font-size: 20px;
+}
+
+a {
+    font-weight: bold;
+    color: black;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+blockquote {
+    border-left: 4px solid gray;
+    padding-left: 15px;
+}
+
+/* source code highlighting */
+
+code {
+    color: hsl(0, 0%, 30%);
+}
+
+div.sourceCode {
+    background: hsl(0, 0%, 96%);
+    color: hsl(0, 0%, 20%);
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 4px;
+    padding: 0px 20px;
+    margin: 2rem 0;
+}
+
+a.sourceLine {
+    font-weight: bold;
+    color: hsl(0, 0%, 20%);
+    text-decoration: none;
+}
+a.sourceLine:hover {
+    font-weight: bold;
+    color: hsl(0, 0%, 20%);
+    text-decoration: none;
+}
+
+.op { color: black; }
+.pp { color: hsl(240, 50%, 50%); }
+.kw { color: hsl(0, 50%, 50%); }
+.cf { color: hsl(60, 50%, 30%); }
+.bu { color: hsl(300, 50%, 50%); }
+.fu { color: hsl(240, 50%, 50%); }
+.st { color: hsl(300, 50%, 50%); }
+.dt { color: hsl(120, 50%, 40%); }
+.dv { color: hsl(300, 50%, 50%); }
+.co {
+    color: hsl(180, 80%, 40%);
+    font-weight: bold;
+}
+
+/* end of source code highlighting */

@@ -1,0 +1,7 @@
+# TODO
+
+- Add error checking for missing TIMESTAMP
+- Make sure printable works as expected
+- Add dark theme
+- RSS
+- make individual posts end in / instead of .html
