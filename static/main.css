@@ -5,6 +5,11 @@ body {
     margin-top: 2rem;
     /*font-family: monospace;*/
     font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.2;
+}
+
+li {
+    margin: 5px;
 }
 
 /* shrink the text size of source code for small screens

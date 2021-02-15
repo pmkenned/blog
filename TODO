@@ -5,3 +5,7 @@
 - Add dark theme
 - RSS
 - make individual posts end in / instead of .html
+
+# Notes
+
+- date +%s

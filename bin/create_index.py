@@ -12,11 +12,12 @@ def get_posts(md_files):
 
     posts = list()
     for f in md_files:
-        h1 = subprocess.run(["grep", "-m1", "^# ", "%s" % f], capture_output=True, text=True).stdout
+        h1 = subprocess.run(["grep", "-m1", "^# ", f], capture_output=True, text=True).stdout
         title = re.sub(r'(^# *|\n)', '', h1)
         href = re.sub(r'\.md$', '.html', f)
         href = re.sub(r'.*/', '', href)
         timestamp = subprocess.run(["grep", "-oP", "(?<=TIMESTAMP:) *\d+", f], capture_output=True, text=True).stdout
+        assert timestamp != ""
         posts.append({'href': href, 'title': title, 'timestamp': timestamp})
 
     posts = sorted(posts, key=lambda x: x['timestamp'], reverse=True)
@@ -40,7 +41,6 @@ if __name__ == "__main__":
             fh.write('        <ul class="no_bullet">\n')
             for post in posts:
                 date_str = to_date_str(post['timestamp'])
-                
                 fh.write('            <li>%s: <a href="%s">%s</a></li>\n' % (date_str, post['href'], post['title']))
             fh.write('        </ul>\n')
         else:
