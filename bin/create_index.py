@@ -41,6 +41,8 @@ if __name__ == "__main__":
             fh.write('        <ul class="no_bullet">\n')
             for post in posts:
                 date_str = to_date_str(post['timestamp'])
+                if date_str.startswith(' '):
+                    date_str = '&nbsp;' + date_str.lstrip(' ')
                 fh.write('            <li>%s: <a href="%s">%s</a></li>\n' % (date_str, post['href'], post['title']))
             fh.write('        </ul>\n')
         else:
