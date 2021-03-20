@@ -4,4 +4,4 @@
 EXCLUDES=()
 #EXCLUDES+=(--exclude ".*")
 
-rsync --verbose -avzh --delete --progress ./output/ "${EXCLUDES[@]}" paulkenn@paulmkennedy.com:~/www/blog/
+rsync --verbose -avzh --delete --progress ./output/ "${EXCLUDES[@]}" paulkenn@paulmkennedy.com:~/www/redesign/blog/
