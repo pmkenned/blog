@@ -11,7 +11,11 @@ Here is Another blog I like: [Fabien Sanglard][fabien]
 with lots of pretty words  
 and interesting ideas
 
-<script src="test.js"></script>
+Here is a picture of a duck:
+
+![Duck](duck.png){ width=150px }
+
+<script src="test.js" id="testScript" ></script>
 
 Goals of this blog
 
@@ -20,7 +24,7 @@ Goals of this blog
 * Clean
 * Printable
 
-`testing`
+Try this command: `ls -ltr`
 
 ```c
 #include <stdio.h>

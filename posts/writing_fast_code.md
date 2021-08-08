@@ -1,0 +1,70 @@
+# Notes on "Writing Fast Code"
+TIMESTAMP: 1628288576
+
+- Source: [code::dive conference 2015 - Andrei Alexandrescu - Writing Fast Code I](https://www.youtube.com/watch?v=vrfYLlR8X8k)
+- Amdahl's law
+- Processors have traded away determinism for performance
+- Fewer instructions = faster code: not always true, but a decent rule of thumb
+- Goal of benchmarking: estimate speed of some algorithm
+  - Want to avoid measuring framework overheads, clock resolution noise, unrelated sys activity, etc.
+- The more you measure benchmarks, the closer the mode will be to the minimum
+- Mitigating sources of noise
+  - Quantization noise: repeat many times, measure once, divide by n
+  - Other noise: measure many times, take the mode or minimum
+    - Exceptions: networking, deadlocking
+  - Overhead noise: measure the overhead and subtract it
+    - How to prevent loop being optimized away: `asm volatile("")`
+    - To prevent function call from being optimized away, see 30:00
+    - Touching entire memory: `asm volatile("" : : : "memory");`
+    - More porable way: see 31:36
+- Which counter to use?
+  - Linux: `clock_gettime(CLOCK_REALTIME)`
+- Always start with a baseline
+  - "I sorted 1M floats in 8 milliseconds" isn't informative
+  - "Quicksort is 25% faster than heapsort on 1M Gaussian floats" is informative
+- Differential timing
+  - Traditional:
+    - Run baseline `n` times, measure `t_a`
+    - Run contender `n`  times, measure `t_b`
+    - relative improvement `r = t_a/t_b`
+  - Differential:
+    - Run baseline `2n` times, measure `t_2a`
+    - Run baseline `n` times and contender `n` times, measure `t_a+b`
+    - relative improvement `r = t_2a/(2t_a+b - t_2a)`
+    - Some overhead noise cancelled
+- Common pitfalls
+  - Measuring debug builds
+  - Different setup for baseline and measured
+  - Including ancillary work in measurement (e.g. printf)
+  - Optimize rare cases at expense of common case
+- Generalities
+  - Prefer static linking to dynamic linking
+  - Prefer position-dependent code to PIC
+  - Prefer 64-bit code and 32-bit data
+  - Prefer regular access patterns
+  - Minimize control flow, avoid data dependencies
+- Storage
+  - Use `static const` for immutables
+  - Use stack for most variables
+  - Avoid globals, they have aliasing issues
+  - Thread-local storage is slow
+- Floating point
+  - Double and single precision are the same speed, but converting is slow
+  - ints -> FP is cheap, but FP -> int is expensive
+- Strength reduction: use operations of minumum strength
+  - Comparisons
+  - int add, subtract, bitops, shift
+  - FP add, sub
+  - int32 mul, FP mul
+  - FP division remainder
+  - int division, remainder
+- Examples
+  - `digits10`
+  - `u64ToAscii`
+- Builtins: LIKELY, UNLIKELY
+- Minimize indirect writes: hard for the CPU to speculate on
+- To get better ILP, have fewer data dependencies
+
+## Resources
+
+- [Google Benchmark Library](https://github.com/google/benchmark)
